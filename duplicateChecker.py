@@ -19,32 +19,53 @@ class Model:
         counts = Counter(id_en_dict.values())
         duplicate_ids = {k for k, v in id_en_dict.items() if counts[v] > 1}
         return duplicate_ids
-
-class View:
-    @staticmethod
-    def show_duplicate_ids(duplicate_ids):
+   
+    def save_duplicate_ids(self,duplicate_ids):
         myfile = open('Duplicate Checker/duplicateIDs.txt', 'w')
         for id in duplicate_ids:
             myfile.write(id+'\n')
-            print(id)
         myfile.close()
 
+class View:
+    @staticmethod
+    def user():
+        path = input("enter path : ").replace('\\','/').replace('"', '')
+        return path
+    
+    @staticmethod
+    def show_duplicate_ids(duplicate_ids):
+        for id in duplicate_ids:
+            print(id)
+            
+    @staticmethod
+    def save_duplicate_ids():
+        print("Duplicates saved")
+
 class Controller:
-    def __init__(self,filePath):
+    def __init__(self):
+        self.filePath = View.user()
+        
         try:
-            with open(filePath, 'r', encoding="utf-8") as f:
+            with open(self.filePath, 'r', encoding="utf-8") as f:
                 data = f.read().replace('\n', '')
             self.model = Model(data)
         except:
+            self.model=Model("")
             print("invalid file path")
 
     def show_duplicates(self):
         duplicate_ids = self.model.get_duplicate_ids()
         View.show_duplicate_ids(duplicate_ids)
+        self.model.save_duplicate_ids(duplicate_ids)
+    
+    def save_duplicates(self):
+        duplicate_ids = self.model.get_duplicate_ids()
+        self.model.save_duplicate_ids(duplicate_ids)
+        View.save_duplicate_ids()
 
 if __name__ == '__main__':
-    controller = Controller('Duplicate Checker/Sample/NextGen_Translations.tdb')
-    controller.show_duplicates()
+    controller = Controller()
+    controller.save_duplicates()
 
 
 
