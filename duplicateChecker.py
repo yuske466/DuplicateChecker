@@ -42,7 +42,7 @@ class View:
         
     @staticmethod
     def save_duplicate_ids():
-        print("Duplicates saved")
+        input("Duplicates saved")
 
 class Controller:
     def __init__(self):
