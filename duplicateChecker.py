@@ -21,7 +21,7 @@ class Model:
         return duplicate_ids
    
     def save_duplicate_ids(self,duplicate_ids):
-        myfile = open('Duplicate Checker/duplicateIDs.txt', 'w')
+        myfile = open('duplicateIDs.txt', 'w')
         for id in duplicate_ids:
             myfile.write(id+'\n')
         myfile.close()
@@ -30,13 +30,15 @@ class View:
     @staticmethod
     def user():
         path = input("enter path : ").replace('\\','/').replace('"', '')
+        print(path)
         return path
     
     @staticmethod
     def show_duplicate_ids(duplicate_ids):
+        print(duplicate_ids)
         for id in duplicate_ids:
             print(id)
-            
+        input("done")
     @staticmethod
     def save_duplicate_ids():
         print("Duplicates saved")
@@ -66,7 +68,7 @@ class Controller:
 if __name__ == '__main__':
     try:
         controller = Controller()
-        controller.save_duplicates()
+        controller.show_duplicates()
     except:
         input("Error! Something is wrong!")
 
