@@ -35,10 +35,10 @@ class View:
     
     @staticmethod
     def show_duplicate_ids(duplicate_ids):
-        print(duplicate_ids)
         for id in duplicate_ids:
             print(id)
         input("done")
+        
     @staticmethod
     def save_duplicate_ids():
         print("Duplicates saved")
@@ -68,7 +68,7 @@ class Controller:
 if __name__ == '__main__':
     try:
         controller = Controller()
-        controller.show_duplicates()
+        controller.save_duplicates()
     except:
         input("Error! Something is wrong!")
 
