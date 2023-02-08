@@ -64,8 +64,11 @@ class Controller:
         View.save_duplicate_ids()
 
 if __name__ == '__main__':
-    controller = Controller()
-    controller.save_duplicates()
+    try:
+        controller = Controller()
+        controller.save_duplicates()
+    except:
+        input("Error! Something is wrong!")
 
 
 
