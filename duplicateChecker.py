@@ -22,6 +22,7 @@ class Model:
    
     def save_duplicate_ids(self,duplicate_ids):
         myfile = open('duplicateIDs.txt', 'w')
+        myfile.write('DUPLICATE IDs'+'\n-------------------------')
         for id in duplicate_ids:
             myfile.write(id+'\n')
         myfile.close()
